@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 let products = [];
 
 export const createProduct = (request, response) => {
-    const{ totalPrice, foodOrderItems, status } = request.body
+    const{user, totalPrice, foodOrderItems, status } = request.body
     console.log(totalPrice, foodOrderItems, status, "Body" );
     products.push({
-        user: uuidv4(), totalPrice, foodOrderItems, status, createdAt: new Date(), createdAt: new Date(), id: uuidv4()
+        user, totalPrice, foodOrderItems, status, createdAt: new Date(), createdAt: new Date(), id: uuidv4()
     })
     console.log(products, "product");
     response.send({
@@ -28,6 +28,15 @@ export const updateProductById = (request, response) => {
     response.send({
         success: true,
         message: "Product Updated"
+    })
+}
+
+export const deleteProductById = (request, response) => {
+    const { id } = request.body
+    products = products.filter((product) => product.id !== id)
+    response.send({
+        success: true,
+        message: "Product Delete"
     })
 }
 

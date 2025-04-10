@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 let users = [];
 
 export const userCreate = (request, response) => {
-    const{ username, gender, age, email } = request.body
+    const{ profileImgUrl, username, gender, age, email } = request.body
     console.log(username, gender, age, email, 'Body');
     users.push({
-        username, gender, age, email, id: uuidv4()
+        profileImgUrl, username, gender, age, email, id: uuidv4()
     })
     console.log(users, 'users');
     response.send({
